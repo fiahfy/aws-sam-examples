@@ -34,6 +34,7 @@ make package && make deploy
 ## References
 * https://github.com/awslabs/aws-lambda-go-api-proxy
 * https://github.com/awslabs/serverless-application-model
+* https://github.com/awslabs/aws-sam-cli/tree/develop/samcli/local/init/templates/cookiecutter-aws-sam-hello-golang/%7B%7Bcookiecutter.project_name%7D%7D
 * https://hackernoon.com/managing-multi-environment-serverless-architecture-using-aws-an-investigation-6cd6501d261e
 * https://www.techscore.com/blog/2018/12/07/aws-sam-tips/
 * https://www.ketancho.net/entry/2018/01/10/080000
