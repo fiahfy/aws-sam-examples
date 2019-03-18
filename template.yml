@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  Environment:
+    Description: The environment type
+    Type: String
+    AllowedValues:
+      - production
+      - staging
+      - testing
+      # - development
+    ConstraintDescription: must be a production, staging, testing or development
+
+Mappings:
+  EnvironmentMap:
+    production:
+      MSG: on production
+    staging:
+      MSG: on staging
+    testing:
+      MSG: on testing
+    # TODO: FindInMap is not supported in SAM CLI (https://github.com/awslabs/aws-sam-cli/issues/476)
+    # development:
+    #   MSG: on development
+
+Resources:
+  ServerlessFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: main
+      Runtime: go1.x
+      MemorySize: 128
+      Timeout: 5
+      # Tracing: Active # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
+      Events:
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: any
+      Environment:
+        Variables:
+          MSG: !FindInMap [ EnvironmentMap, !Ref Environment, MSG ]
+
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${ServerlessFunction}
+      RetentionInDays: 7
+
+Outputs:
+  ApiUrl:
+    Description: URL for application
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"

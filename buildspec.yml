@@ -1,0 +1,27 @@
+version: 0.2
+
+env:
+  variables:
+    GO111MODULE: on
+
+phases:
+  install:
+    commands:
+      - go version
+      - go env
+  build:
+    commands:
+      - make build
+  post_build:
+    commands:
+      - make package
+
+artifacts:
+  files:
+    - packaged.yml
+  discard-paths: yes
+
+cache:
+  paths:
+    # - /root/.cache/go-build/**/*
+    - /go/pkg/**/*
