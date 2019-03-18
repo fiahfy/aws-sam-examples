@@ -26,7 +26,7 @@ start-api:
 	sam local start-api --skip-pull-image --env-vars env.json
 
 package:
-	sam package --template-file template.yml --output-template-file packaged.yml --s3-bucket <BUCKET_NAME>
+	sam package --template-file template.yml --output-template-file packaged.yml --s3-bucket <bucket_name>
 
 deploy:
-	sam deploy --template-file packaged.yml --stack-name <STACK_NAME> --capabilities CAPABILITY_IAM --parameter-overrides Environment=<ENV>
+	sam deploy --template-file packaged.yml --stack-name <stack_name> --capabilities CAPABILITY_IAM --parameter-overrides Environment=<env>
