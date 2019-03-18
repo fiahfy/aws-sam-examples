@@ -1,5 +1,5 @@
 # api-lambda-go
-> Sample for API Gateway + Lambda + Golang
+> Sample for API Gateway + Lambda + Golang.
 
 ## Get Started
 ```
