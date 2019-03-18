@@ -3,7 +3,6 @@
 
 
 ## Requirements
-* [Golang](https://golang.org)
 * [Docker installed](https://www.docker.com/community-edition)
 * aws-cli  
     ```
