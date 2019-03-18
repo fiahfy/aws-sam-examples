@@ -1,4 +1,4 @@
-.PHONY: deps clean format test build watch package
+.PHONY: deps clean format test build watch package deploy
 
 deps:
 	go get -u github.com/cespare/reflex
