@@ -1,5 +1,5 @@
 # aws-sam-samples
-> Samples for AWS SAM.
+> AWS SAM Samples.
 
 
 ## Requirements
