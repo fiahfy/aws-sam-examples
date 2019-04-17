@@ -1,6 +1,7 @@
 # api-lambda-go
 > Sample for API Gateway + Lambda + Golang.
 
+
 ## Get Started
 ```
 git clone https://github.com/fiahfy/aws-sam-sample.git
@@ -27,7 +28,8 @@ make test
 
 ### Release
 ```
-make package && make deploy
+make package
+make deploy
 ```
 
 

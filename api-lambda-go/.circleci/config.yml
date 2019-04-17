@@ -1,0 +1,42 @@
+version: 2.1
+executors:
+  default:
+    docker:
+      - image: circleci/golang:1.11
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
+jobs:
+  beta:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - aws-cli/install
+      - aws-cli/configure
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
+      - run:
+          name: Test
+          command: make test
+      - run:
+          name: Build
+          command: make build
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - /go/pkg
+      - run:
+          name: Package
+          command: make aws-package
+      - deploy:
+          name: Deploy
+          command: make aws-deploy
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - beta:
+          filters:
+            branches:
+              only: develop
