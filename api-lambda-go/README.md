@@ -1,10 +1,10 @@
 # api-lambda-go
-> Sample for API Gateway + Lambda + Golang.
+> Example for API Gateway + Lambda + Golang.
 
 
 ## Get Started
 ```
-git clone https://github.com/fiahfy/aws-sam-sample.git
+git clone https://github.com/fiahfy/aws-sam-example.git
 cd $_/api-lambda-go
 make deps
 ```
